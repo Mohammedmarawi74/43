@@ -135,9 +135,12 @@ const SlideRenderer = forwardRef<HTMLDivElement, Props>(({ slide, themeIndex, lo
       </div>
 
       {/* Design Footer */}
-      <footer className={`design-footer ${isDark || isBackgroundImg ? 'is-dark' : 'is-light'}`} style={{ backgroundColor: theme.accentColor }}>
-        <span className="footer-left">منصة المستثمر</span>
-        <span className="footer-right">al_investor.com</span>
+      <footer 
+        className={`design-footer ${isDark || isBackgroundImg ? 'is-dark text-white' : `is-light ${theme.textColor}`}`} 
+        style={{ backgroundColor: theme.accentColor }}
+      >
+        <span className="footer-left"><strong style={{ fontWeight: 900 }}>منصة المستثمر الاقتصادية</strong></span>
+        <span className="footer-right">al-investor.com</span>
       </footer>
     </div>
   );

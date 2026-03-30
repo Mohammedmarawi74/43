@@ -957,7 +957,7 @@ body {
 
 /* Slide Card Components */
 .slide-card {
-  border-radius: 2.5rem;
+  border-radius: 0;
   overflow: hidden;
   position: relative;
   display: flex;
@@ -1217,24 +1217,21 @@ body {
 }
 
 .design-footer.is-dark {
-  color: rgba(255, 255, 255, 0.95);
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  opacity: 0.95;
 }
 
 .design-footer.is-light {
-  color: rgba(15, 23, 42, 0.8);
+  opacity: 0.8;
 }
 
 .footer-left, .footer-right {
-  font-size: 13px; /* Optimized size for legibility */
+  font-size: 13px;
   font-weight: 800;
-  text-transform: lowercase;
   letter-spacing: 0.02em;
-  font-family: 'IBM Plex Sans Arabic', sans-serif;
-  margin-bottom: 5px; /* Lift text slightly above the 5px bar */
+  font-family: inherit;
+  margin-bottom: 5px;
 }
 
 .footer-right {
   direction: rtl;
-  font-weight: 700;
 }

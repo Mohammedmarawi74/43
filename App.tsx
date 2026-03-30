@@ -16,7 +16,6 @@ const App: React.FC = () => {
   const [logo, setLogo] = useState<string | undefined>();
   const [activeTab, setActiveTab] = useState<'content' | 'css'>('content');
   
-  const slideImageInputRef = useRef<HTMLInputElement>(null);
   const mainSlideRef = useRef<HTMLDivElement>(null);
 
   const currentSlide = slides[currentSlideIndex];
@@ -58,16 +57,12 @@ const App: React.FC = () => {
     setCurrentSlideIndex(Math.max(0, currentSlideIndex - 1));
   };
 
-  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>, type: 'logo' | 'slide') => {
+  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
       const reader = new FileReader();
       reader.onloadend = () => {
-        if (type === 'logo') {
-          setLogo(reader.result as string);
-        } else {
-          updateSlide(currentSlide.id, { image: reader.result as string });
-        }
+        setLogo(reader.result as string);
       };
       reader.readAsDataURL(file);
     }
@@ -293,41 +288,6 @@ const App: React.FC = () => {
                     />
                   </div>
 
-                  <div className="media-container">
-                    <label className="field-label">الصورة والتحكم في ظهورها</label>
-                    <div className="media-actions">
-                      <button 
-                        onClick={() => slideImageInputRef.current?.click()}
-                        className="upload-box"
-                      >
-                        <Upload className="w-6 h-6" />
-                        <span className="upload-text">{currentSlide.image ? 'تغيير الصورة' : 'رفع صورة'}</span>
-                        <input type="file" ref={slideImageInputRef} className="hidden" accept="image/*" onChange={(e) => handleFileUpload(e, 'slide')} />
-                      </button>
-                      {currentSlide.image && (
-                        <button onClick={() => updateSlide(currentSlide.id, { image: undefined })} className="icon-action-btn delete">
-                          <Trash2 className="w-5 h-5" />
-                        </button>
-                      )}
-                    </div>
-                    
-                    {currentSlide.image && (
-                      <div className="placement-toggle">
-                        <button 
-                          onClick={() => updateSlide(currentSlide.id, { imagePlacement: 'top' })}
-                          className={`toggle-button ${currentSlide.imagePlacement !== 'background' ? 'active' : ''}`}
-                        >
-                          <Square className="w-3 h-3" /> صورة محتوى
-                        </button>
-                        <button 
-                          onClick={() => updateSlide(currentSlide.id, { imagePlacement: 'background' })}
-                          className={`toggle-button ${currentSlide.imagePlacement === 'background' ? 'active' : ''}`}
-                        >
-                          <Maximize2 className="w-3 h-3" /> خلفية كاملة
-                        </button>
-                      </div>
-                    )}
-                  </div>
 
                   <div className="field-group">
                     <label className="field-label">النص الثانوي</label>
